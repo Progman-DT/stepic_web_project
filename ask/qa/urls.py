@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
+#from django.contrib import admin
 from qa.views import test
 
 urlpatterns = patterns('',
@@ -7,11 +7,11 @@ urlpatterns = patterns('',
     # url(r'^$', 'ask.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', include(admin.site.urls)),
-    url(r'^login/', include(admin.site.urls)),
-    url(r'^signup/', include(admin.site.urls)),
+    url(r'^$', test, name='test'),
+    url(r'^login/', test, name='test'),
+    url(r'^signup/', test, name='test'),
     url(r'^question/\d+/', test, name='test'),
-    url(r'^ask/', include(admin.site.urls)),
-    url(r'^popular/', include(admin.site.urls)),
-    url(r'^new/', include(admin.site.urls)),
+    url(r'^ask/', test, name='test'),
+    url(r'^popular/', test, name='test'),
+    url(r'^new/', test, name='test'),
 )
