@@ -20,7 +20,7 @@ class Question(models.Model):
 		return reverse('qa:show-question', kwargs={'slug': self.slug})
 		
 	class Meta:
-		db_table = 'qa_question'
+		db_table = 'question'
 
 class Answer(models.Model):
 	text = models.TextField()
@@ -29,4 +29,4 @@ class Answer(models.Model):
 	author = models.CharField(max_length=255)
 	
 	class Meta:
-		db_table = 'qa_answer'
+		db_table = 'answer'
