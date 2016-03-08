@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Question(models.Model):
-	slug = models.SlugField(unique=True)
+	#slug = models.SlugField(unique=True)
 	title = models.CharField(max_length=255)
 	text = models.TextField()
 	added_at = models.DateTimeField(blank=True)
@@ -17,7 +17,7 @@ class Question(models.Model):
 		return self.title
 
 	def get_url(self):
-		return reverse('qa:show-question', kwargs={'slug': self.slug})
+		return reverse('qa:show-question', kwargs={'slug': self.id})
 		
 	class Meta:
 		db_table = 'question'
