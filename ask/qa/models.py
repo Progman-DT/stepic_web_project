@@ -9,7 +9,7 @@ class Question(models.Model):
 	title = models.CharField(max_length=255)
 	text = models.TextField()
 	added_at = models.DateTimeField(blank=True, null=True)
-	rating = models.IntegerField()
+	rating = models.IntegerField(null=True)
 	author = models.CharField(max_length=255)
 	likes = models.ManyToManyField(User)
 
