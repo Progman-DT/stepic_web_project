@@ -8,5 +8,5 @@ urlpatterns = patterns('',
     url(r'^ask/', test),
     url(r'^popular/', list_popular, name='list-popular'),
     url(r'^new/', test),
-    url(r'^question/(?P<slug>\d+)/', show_question, name='show-question'),
+    url(r'^question/(?P<slug>\w+)/$', show_question, name='show-question'),
 )
