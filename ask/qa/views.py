@@ -12,16 +12,16 @@ def test(request, *args, **kwargs):
 
 def list_qw(request):
 	questions = Question.objects.all()
-	questions = questions.order_by('-added_at')
+	questions = questions.order_by('-id')
 	limit = request.GET.get('limit', 10);
 	page = request.GET.get('page', 1)
 	paginator = Paginator(questions, limit)
 	paginator.baseurl = '/?page='
 	page = paginator.page(page)
 	return render(request, 'qa/list_qw.html', {
-		questions: page.object_list,
-		paginator: paginator,
-		page: page,
+		'questions': page.object_list,
+		'paginator': paginator,
+		'page': page,
 	})
 
 def list_popular(request):
@@ -33,9 +33,9 @@ def list_popular(request):
 	paginator.baseurl = '/popular/?page='
 	page = paginator.page(page)
 	return render(request, 'qa/list_popular.html', {
-		questions: page.object_list,
-		paginator: paginator,
-		page: page,
+		'questions': page.object_list,
+		'paginator': paginator,
+		'page': page,
 	})
 
 @require_GET
