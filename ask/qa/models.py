@@ -17,7 +17,7 @@ class Question(models.Model):
 		return self.title
 
 	def get_url(self):
-		return reverse('qa:show-question', kwargs={'slug': self.id})
+		return reverse('show-question', kwargs={'slug': self.id})
 		
 	class Meta:
 		db_table = 'question'
