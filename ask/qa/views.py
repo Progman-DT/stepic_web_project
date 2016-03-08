@@ -4,7 +4,7 @@ from django.views.decorators.http import require_GET
 from django.http import HttpResponse
 from django.http import HttpRequest
 from django.http import Http404
-from qa.models import Quesion, Answer
+from qa.models import Question, Answer
 
 # Create your views here.
 def test(request, *args, **kwargs):
