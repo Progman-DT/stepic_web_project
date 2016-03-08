@@ -18,10 +18,15 @@ class Question(models.Model):
 
 	def get_url(self):
 		return reverse('qa:show-question', kwargs={'slug': self.slug})
+		
+	class Meta:
+		db_table = 'qa_question'
 
 class Answer(models.Model):
 	text = models.TextField()
 	added_at = models.DateTimeField(blank=True)
 	question = models.ForeignKey(Question)
 	author = models.CharField(max_length=255)
-
+	
+	class Meta:
+		db_table = 'qa_answer'
