@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from qa.view import test
+from qa.views import *
 
 urlpatterns = patterns('',
     url(r'^$', list_qw, name='list-qw'),
