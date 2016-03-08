@@ -13,10 +13,10 @@
 
 <nav>
 	{% for p in paginator.page_range %}
-		{% if p.number == page.number %}
-			<b>{{ p.number }}</b> | 
+		{% if p == page.number %}
+			<b>{{ p }}</b> | 
 		{% else %}
-			<a href="{{ paginator.baseurl }}{{ p.number }}">{{ p.number }}</a> | 
+			<a href="{{ paginator.baseurl }}{{ p }}">{{ p }}</a> | 
 		{% endif %}
 	{% endfor %}
 </nav>
