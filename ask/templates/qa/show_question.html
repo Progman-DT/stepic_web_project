@@ -5,4 +5,13 @@
 {% endblock %}
 
 {% block content %}
+<h1>{{ question.title }}</h1>
+<p>{{ question.text }}</p>
+<hr>
+{% for answer in answers %}
+	<h1>{{ answer.author }}</h1>	
+	<h1>{{ answer.added_at }}</h1>
+	<p>{{ answer.text }}</p>
+	<hr>
+{% endfor %}
 {% endblock %}

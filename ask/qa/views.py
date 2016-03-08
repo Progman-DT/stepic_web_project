@@ -41,7 +41,9 @@ def list_popular(request):
 @require_GET
 def show_question(request, slug):
 	question = get_object_or_404(Question, slug=slug)
-	answers = Answer.objects.filter(question=question)
+	#answers = Answer.objects.filter(question=question)
+	answers = question.answer_set.all()
+	answers = answers.order_by('-added_at')
 	return render(request, 'qa/show_question.html', {
 		'question': question,
 		'answers': answers,

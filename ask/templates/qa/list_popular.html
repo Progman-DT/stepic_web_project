@@ -5,4 +5,19 @@
 {% endblock %}
 
 {% block content %}
+{% for question in questions %}
+	<h1>{{ question.title }}<h1>
+	<a href="{{ question.get_url }}">{{ question }}</a>
+	<hr>
+{% endfor %}
+
+<nav>
+	{% for p in paginator.page_range %}
+		{% if p.number == page.number %}
+			<b>{{ p.number }}</b> | 
+		{% else %}
+			<a href="{{ paginator.baseurl }}{{ p.number }}">{{ p.number }}</a> | 
+		{% endif %}
+	{% endfor %}
+</nav>
 {% endblock %}
