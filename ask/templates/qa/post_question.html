@@ -1,0 +1,9 @@
+{% extends "qa/base_layout.html" %}
+
+{% block title %}
+	{{ block.super }} - Задайте вопрос 
+{% endblock %}
+
+{% block content %}
+{{ form.as_ul }}
+{% endblock %}
