@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block content %}
+<form method="POST" action="/answer/">
+{% csrf_token %}
 {{ form.as_ul }}
+</form>
 <hr>
 <h1>{{ question.title }}</h1>
 <p>{{ question.text }}</p>

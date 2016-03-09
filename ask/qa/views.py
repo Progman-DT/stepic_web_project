@@ -69,12 +69,11 @@ def post_question(request):
 
 @require_POST
 def post_answer(request):
-	#if request.method == "POST":
-		form = AnswerForm(request.POST):
-		if form.is_valid():
-			answer = form.save()
-			url = answer.question.get_url()
-			return HttpResponseRedirect(url)
+	form = AnswerForm(request.POST)
+	if form.is_valid():
+		answer = form.save()
+		url = answer.question.get_url()
+		return HttpResponseRedirect(url)
 
 
 
