@@ -46,8 +46,7 @@ def show_question(request, slug):
 	#answers = Answer.objects.filter(question=question)
 	answers = question.answer_set.all()
 	answers = answers.order_by('-added_at')
-	if request.method == "GET":
-		form = AnswerForm()
+	form = AnswerForm()
 	return render(request, 'qa/show_question.html', {
 		'question': question,
 		'answers': answers,
