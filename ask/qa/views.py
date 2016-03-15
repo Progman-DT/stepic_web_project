@@ -103,7 +103,7 @@ def signup(request):
 			user = form.save()
 			user = authenticate(username=request.POST['username'], password=request.POST['password'])
 			login(request, user)
-			return HttpResponeRedirect('/')
+			return HttpResponseRedirect('/')
 	else:
 		form = SignupForm()
 	return render(request, 'qa/signup_form.html', {
