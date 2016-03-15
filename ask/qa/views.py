@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from django.views.decorators.http import require_GET, require_POST, login_required
+from django.views.decorators.http import require_GET, require_POST
 from django.http import HttpResponse
 from django.http import HttpRequest
 from django.http import Http404
@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from qa.models import *
 from qa.forms import *
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def test(request, *args, **kwargs):
@@ -92,7 +93,7 @@ def login_view(request):
 	else:
 		form = LoginForm()
 	return render(request, 'qa/login_form.html', {
-		'form': form:,
+		'form': form,
 	})	
 
 def signup(request):
@@ -105,6 +106,6 @@ def signup(request):
 	else:
 		form = SignupForm()
 	return render(request, 'qa/signup_form.html', {
-		'form': form:,
+		'form': form,
 	})
 
