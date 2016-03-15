@@ -55,10 +55,13 @@ def show_question(request, slug):
 		'form': form,
 	})
 
-@login_required
 def post_question(request):
 	if request.method == "POST":
-		form = AskForm(request.user, request.POST)
+		user = request.user                                                                                             
+                if not user.is_authenticated():                                                                                 
+                        return HttpResponseRedirect('/login/')                                                                  
+                form = AskForm(request.POST)                                                                                    
+                form._user = request.user        
 		if form.is_valid():
 			question = form.save()
 			url = question.get_url()
@@ -70,9 +73,12 @@ def post_question(request):
 	})
 
 @require_POST
-@login_required
 def post_answer(request):
-	form = AnswerForm(request.user, request.POST)
+	user = request.user                                                                                                     
+        if not user.is_authenticated():                                                                                         
+                return HttpResponseRedirect('/login/') 
+	form = AnswerForm(request.POST)                                                                                         
+        form._user = request.user
 	if form.is_valid():
 		answer = form.save()
 		url = answer.question.get_url()
@@ -87,7 +93,7 @@ def login_view(request):
 			user = authenticate(username=request.POST['username'], password=request.POST['password'])
 			if user is not None:
 				login(request, user)
-				return HttpResponseRedirect('/')
+				return HttpResponseRedirect(request.GET.get('next'))
 			else:
 				pass
 	else:
