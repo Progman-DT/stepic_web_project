@@ -42,6 +42,7 @@ class LoginForm(forms.Form):
 	password = forms.CharField(max_length=32, widget=forms.PasswordInput) 
 
 	def clean_username(self):
+		username = self.cleaned_data['username']
 		if len(username) > 64:
 			raise forms.ValidationError('Username is too long', code='Long_name')
 		return username
@@ -52,6 +53,7 @@ class SignupForm(forms.Form):
 	password = forms.CharField(max_length=32, widget=forms.PasswordInput) 
 	
 	def clean_username(self):
+		username = self.cleaned_data['username']
 		if len(username) > 64:
 			raise forms.ValidationError('Username is too long', code='Long_name')
 		return username
