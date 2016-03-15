@@ -8,6 +8,7 @@
 <form method="POST" action="/answer/">
 {% csrf_token %}
 {{ form.as_ul }}
+ <input type="submit" value="OK">
 </form>
 <hr>
 <h1>{{ question.title }}</h1>

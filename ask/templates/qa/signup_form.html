@@ -8,5 +8,6 @@
 <form method="POST" action="/signup/">
 {% csrf_token %}
 {{ form.as_ul }}
+ <input type="submit" value="OK">
 </form>
 {% endblock %}

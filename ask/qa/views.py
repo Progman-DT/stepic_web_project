@@ -48,7 +48,7 @@ def show_question(request, slug):
 	#answers = Answer.objects.filter(question=question)
 	answers = question.answer_set.all()
 	answers = answers.order_by('-added_at')
-	form = AnswerForm()
+	form = AnswerForm(request.user)
 	return render(request, 'qa/show_question.html', {
 		'question': question,
 		'answers': answers,
@@ -57,28 +57,30 @@ def show_question(request, slug):
 
 def post_question(request):
 	if request.method == "POST":
-		user = request.user                                                                                             
-                if not user.is_authenticated():                                                                                 
-                        return HttpResponseRedirect('/login/?next=/ask/')                                                                  
-                form = AskForm(request.POST)                                                                                    
+		user = request.user
+		if not user.is_authenticated():
+			return HttpResponseRedirect('/login/?next=/ask/')
+		form = AskForm(request.user, request.POST) 
                 form._user = request.user        
 		if form.is_valid():
 			question = form.save()
 			url = question.get_url()
 			return HttpResponseRedirect(url)
+		else:
+			print(form.is_bound)
 	else:
-		form = AskForm(request.user)
+		form = AskForm(user=request.user)
 	return render(request, 'qa/post_question.html', {
 		'form': form,
 	})
 
 @require_POST
 def post_answer(request):
-	user = request.user                                                                                                     
-        if not user.is_authenticated():                                                                                         
-                return HttpResponseRedirect('/login/') 
-	form = AnswerForm(request.POST)                                                                                         
-        form._user = request.user
+	user = request.user
+	if not user.is_authenticated():
+		return HttpResponseRedirect('/login/') 
+	form = AnswerForm(request.user, request.POST)
+	form._user = request.user
 	if form.is_valid():
 		answer = form.save()
 		url = answer.question.get_url()
@@ -93,13 +95,15 @@ def login_view(request):
 			user = authenticate(username=request.POST['username'], password=request.POST['password'])
 			if user is not None:
 				login(request, user)
-				return HttpResponseRedirect(request.GET.get('next', '/'))
+				return HttpResponseRedirect(request.REQUEST.get('next', '/'))
 			else:
-				pass
+				return HttpResponseRedirect('/signup/')	
 	else:
+		_next = request.GET.get('next', '')
 		form = LoginForm()
 	return render(request, 'qa/login_form.html', {
 		'form': form,
+		'next': _next,
 	})	
 
 def signup(request):

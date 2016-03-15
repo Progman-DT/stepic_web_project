@@ -5,8 +5,13 @@
 {% endblock %}
 
 {% block content %}
+{% if next %}
+<form method="POST" action="/login/?next={{ next }}">
+{% else %}
 <form method="POST" action="/login/">
+{% endif %}
 {% csrf_token %}
 {{ form.as_ul }}
+ <input type="submit" value="OK">
 </form>
 {% endblock %}
