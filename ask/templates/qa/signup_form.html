@@ -1,0 +1,12 @@
+{% extends "qa/base_layout.html" %}
+
+{% block title %}
+	{{ block.super }} - SignUp 
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="/signup/">
+{% csrf_token %}
+{{ form.as_ul }}
+</form>
+{% endblock %}
