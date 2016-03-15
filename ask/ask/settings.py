@@ -60,7 +60,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'stepic_qa',
-        'USER': 'progmandt',
+        'USER': 'box',
         'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '3306',
