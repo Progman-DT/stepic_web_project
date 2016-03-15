@@ -84,7 +84,7 @@ def login_view(request):
 	if request.method == "POST":
 		form = LoginForm(request.POST)
 		if form.is_valid():
-			user = authenticate(request.POST['username'], request.POST['password'])
+			user = authenticate(username=request.POST['username'], password=request.POST['password'])
 			if user is not None:
 				login(request, user)
 				return HttpResponseRedirect('/')
@@ -101,6 +101,7 @@ def signup(request):
 		form = SignupForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+			user = authenticate(username=request.POST['username'], password=request.POST['password'])
 			login(request, user)
 			return HttpResponeRedirect('/')
 	else:
