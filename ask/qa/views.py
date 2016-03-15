@@ -67,7 +67,7 @@ def post_question(request):
 			url = question.get_url()
 			return HttpResponseRedirect(url)
 	else:
-		form = AskForm()
+		form = AskForm(request.user)
 	return render(request, 'qa/post_question.html', {
 		'form': form,
 	})
