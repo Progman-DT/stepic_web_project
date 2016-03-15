@@ -59,7 +59,7 @@ def post_question(request):
 	if request.method == "POST":
 		user = request.user                                                                                             
                 if not user.is_authenticated():                                                                                 
-                        return HttpResponseRedirect('/login/')                                                                  
+                        return HttpResponseRedirect('/login/?next=/ask/')                                                                  
                 form = AskForm(request.POST)                                                                                    
                 form._user = request.user        
 		if form.is_valid():
@@ -93,7 +93,7 @@ def login_view(request):
 			user = authenticate(username=request.POST['username'], password=request.POST['password'])
 			if user is not None:
 				login(request, user)
-				return HttpResponseRedirect(request.GET.get('next'))
+				return HttpResponseRedirect(request.GET.get('next', '/'))
 			else:
 				pass
 	else:
