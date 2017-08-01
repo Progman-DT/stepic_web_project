@@ -1,2 +1,2 @@
-# stepic_web_project
-Stepic Web Project
+# django_web_project
+Django Web Project
